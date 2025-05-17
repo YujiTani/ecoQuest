@@ -4,6 +4,7 @@ import type { Session } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import supabase from './utils/supabase'
+import Router from './routes/Router'
 
 function App() {
   const [session, setSession] = useState<Session | null>(null)
@@ -20,13 +21,11 @@ function App() {
     return () => subscription.unsubscribe()
   }, [])
 
-  if (!session) {
-    return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
-  }
-  else {
-    return (<div>Logged in!</div>)
-  }
-
+  return session ? (
+    <Router />
+  ) : (
+    <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+  )
 }
 
 export default App
