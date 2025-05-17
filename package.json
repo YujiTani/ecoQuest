@@ -38,8 +38,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "bun run lint",
-      "bun run check-types"
+      "eslint --max-warnings=0",
+      "tsc --project tsconfig.json --pretty --noEmit"
     ]
   }
 }
