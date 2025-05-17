@@ -8,7 +8,7 @@
     "build": "bun run --bun tsc -b && bun run --bun vite build",
     "lint": "eslint .",
     "format": "prettier . --write",
-    "check-types": "tsc --project tsconfig.json --pretty --noEmit",
+    "check-types": "tsc --pretty --noEmit",
     "preview": "vite preview",
     "prepare": "husky"
   },
@@ -41,7 +41,7 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --max-warnings=0",
-      "bun run check-types"
+      "bash -c 'bun run check-types'"
     ]
   }
 }
