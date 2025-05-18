@@ -57,10 +57,12 @@ export async function fetchQuestPointByLastWeek() {
 export async function fetchQuestPointByToday() {
   const currentDate = new Date();
   const startDateTime = new Date(currentDate);
-  startDateTime.setHours(0, 0, 0, 1);
+  startDateTime.setUTCHours(0, 0, 0, 1);
+  const startDateTimeISO = startDateTime.toISOString()
 
   const endDateTime = new Date(currentDate);
-  endDateTime.setHours(23, 59, 59, 59)
+  endDateTime.setUTCHours(23, 59, 59, 999)
+  const endDateTimeISO = endDateTime.toISOString()
 
   const { data: quest_points, error } = await supabase
     .from('quest_points')
@@ -71,8 +73,8 @@ export async function fetchQuestPointByToday() {
         point
         )
     `)
-    .gte('created_at', startDateTime.toISOString())
-    .lte('created_at', endDateTime.toISOString())
+    .gte('created_at', startDateTimeISO)
+    .lte('created_at', endDateTimeISO)
     .order('created_at', { ascending: false })
     .limit(1000)
 
