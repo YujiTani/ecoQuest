@@ -1,4 +1,4 @@
-import supabase from "@/utils/supabase";
+import supabase from '@/utils/supabase';
 
 // セッションを取得する関数
 export async function getSession() {

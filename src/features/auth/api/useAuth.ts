@@ -10,7 +10,7 @@ export function useAuth() {
     queryFn: getSession,
     queryKey: ['auth', 'session'],
   });
-  
+
   return {
     session: sessionQuery.data,
   };
@@ -25,8 +25,8 @@ export function useUser() {
     queryFn: getUser,
     queryKey: ['user'],
   });
-  
+
   return {
     user: userQuery.data,
-  }
+  };
 }
