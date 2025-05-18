@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import MainErrorFallback from '@/components/errors/main';
 import { HelmetProvider } from 'react-helmet-async';
+import BaseLayout from '@/components/layouts/base-layout';
 
 const HomePage = lazy(() => import('@/pages/Home'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound'));
@@ -15,8 +16,10 @@ function Router() {
         <ErrorBoundary FallbackComponent={MainErrorFallback}>
           <HelmetProvider>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="*" element={<NotFoundPage />} />
+              <Route element={<BaseLayout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
             </Routes>
           </HelmetProvider>
         </ErrorBoundary>
