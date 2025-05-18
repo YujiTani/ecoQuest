@@ -1,8 +1,7 @@
 function Home() {
-
   return (
-    <div className="w-full min-h-screen p-6">
-      <h1 className="text-2xl font-bold mb-6">Home</h1>
+    <div className="min-h-screen w-full p-6">
+      <h1 className="mb-6 text-2xl font-bold">Home</h1>
     </div>
   );
 }
