@@ -3,8 +3,8 @@ import { useNotificationStore } from '@/components/ui/notifications/notification
 function Home() {
   const { addNotification } = useNotificationStore();
   const notification = {
-    type: 'error' as const,
-    message: 'まじでやばいエラーが発生しました',
+    type: 'success' as const,
+    message: '通知があります',
   };
 
   function handleClick() {
@@ -14,7 +14,14 @@ function Home() {
   return (
     <>
       <h1>Home</h1>
-      <button onClick={handleClick}>click</button>
+      <button onClick={handleClick}>通知</button>
+      <button
+        onClick={() => {
+          throw new Error('テスト:エラー発生');
+        }}
+      >
+        error
+      </button>
     </>
   );
 }

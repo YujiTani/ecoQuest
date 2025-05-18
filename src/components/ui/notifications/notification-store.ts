@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type Notification = {
   id: string;
-  type: 'error';
+  type: 'error' | 'success';
   message: string;
 };
 

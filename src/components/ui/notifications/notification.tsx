@@ -1,7 +1,8 @@
-import { CircleX } from 'lucide-react';
+import { CircleCheck, CircleX } from 'lucide-react';
 
 const icons = {
-  error: <CircleX className="size-6 text-red-500" aria-hidden="true" />,
+  success: <CircleCheck className="size-6 text-green-500" />,
+  error: <CircleX className="size-6 text-red-500" />,
 };
 
 export type NotificationProps = {
