@@ -1,14 +1,13 @@
-import { useQuestPointByUserUuid } from '../api/useQuestPoint';
+import { useQuestPoint, useQuestPointByToday } from '../api/useQuestPoint';
 
 /**
  * ユーザーの獲得しているポイント
  */
 function QuestPoint() {
-  // FIXME: ポイント取得はうまくいかないので一旦後回し
-  const totalQuestPoint = useQuestPointByUserUuid(
-    'a808ba52-64d5-456f-9590-da27cbb945eb',
-  );
-  console.log('totalQuestPoint', totalQuestPoint);
+  const {questPoint: totalQuestPoint} = useQuestPoint();
+  console.log('totalQuestPoint', totalQuestPoint)
+  const {questPoint: currentDateQuestPoint} = useQuestPointByToday();
+  console.log('currentDateQuestPoint', currentDateQuestPoint)
 
   return (
     <div className="flex items-center space-x-6">
@@ -21,7 +20,9 @@ function QuestPoint() {
 
       <div>
         <p className="text-xs text-gray-500">今日</p>
-        <p className="text-2xl font-semibold text-green-600">+10 pt</p>
+        <p className="text-2xl font-semibold text-green-600">
+          {currentDateQuestPoint.toLocaleString()} pt
+        </p>
       </div>
     </div>
   );
