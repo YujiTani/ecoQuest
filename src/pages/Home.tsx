@@ -24,11 +24,17 @@ function Home() {
   }
 
   return (
-    <>
-      <h1>Home</h1>
-      <button onClick={handleClick}>通知</button>
-      <button onClick={handleError}>error</button>
-    </>
+    <div className="w-full min-h-screen p-6">
+      <h1 className="text-2xl font-bold mb-6">Home</h1>
+      <div className="flex gap-4">
+        <button 
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90" 
+          onClick={handleClick}>通知</button>
+        <button 
+          className="px-4 py-2 bg-destructive text-destructive-foreground rounded-md hover:opacity-90" 
+          onClick={handleError}>error</button>
+      </div>
+    </div>
   );
 }
 
