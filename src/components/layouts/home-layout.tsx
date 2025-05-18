@@ -1,7 +1,7 @@
 import Head from '@/components/seo/head';
 import { Outlet } from 'react-router-dom';
 import { BaseLayoutProps } from './base-layout';
-import Header from '../ui/headers/header';
+import Header from '../ui/headers/components/header';
 
 function HomeLayout({ title = 'Home | Eco Quest' }: BaseLayoutProps) {
   return (

@@ -1,5 +1,4 @@
-// src/api/auth.ts
-import supabase from '@/utils/supabase';
+import supabase from "@/utils/supabase";
 
 // セッションを取得する関数
 export async function getSession() {
@@ -21,8 +20,6 @@ export async function getUser() {
   if (!user) {
     throw Error('not found user');
   }
-
-  console.log('user:', user);
 
   return user;
 }
