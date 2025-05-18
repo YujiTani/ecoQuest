@@ -5,9 +5,7 @@ import { useQuestPoint, useQuestPointByToday } from '../api/useQuestPoint';
  */
 function QuestPoint() {
   const {questPoint: totalQuestPoint} = useQuestPoint();
-  console.log('totalQuestPoint', totalQuestPoint)
   const {questPoint: currentDateQuestPoint} = useQuestPointByToday();
-  console.log('currentDateQuestPoint', currentDateQuestPoint)
 
   return (
     <div className="flex items-center space-x-6">

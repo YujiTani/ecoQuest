@@ -4,10 +4,9 @@ const oneWeekMs = 7 * 24 * 60 * 60 * 1000;
 
 export async function fetchQuestPoint() {
   const currentDate = new Date();
-
   const toDateISO = currentDate.toISOString();
 
-  const { data: quest_points, error } = await supabase
+  const { data, error } = await supabase
     .from('quest_points')
     .select(`
         id,
@@ -24,9 +23,7 @@ export async function fetchQuestPoint() {
     throw error;
   }
 
-  console.log('quest_points', quest_points)
-
-  return quest_points;
+  return data;
 }
 
 export async function fetchQuestPointByLastWeek() {
@@ -52,8 +49,6 @@ export async function fetchQuestPointByLastWeek() {
   if (error) {
     throw error;
   }
-
-  console.log('quest_points', quest_points)
 
   return quest_points;
 }
@@ -84,8 +79,6 @@ export async function fetchQuestPointByToday() {
   if (error) {
     throw error;
   }
-
-  console.log('quest_points', quest_points)
 
   return quest_points;
 }

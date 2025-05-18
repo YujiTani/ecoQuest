@@ -11,7 +11,7 @@ export type useQuestPointResponse = {
   created_at: string;
   decarbonisations: {
     point: number;
-  }; 
+  };
 }
 
 /**
@@ -24,12 +24,15 @@ export function useQuestPoint() {
     queryFn: () => fetchQuestPoint(),
   });
 
-  console.log('questPointQuery', questPointQuery)
-
-  const totalPoint = questPointQuery.data
-  ? questPointQuery.data.reduce((sum, item) => {
-    return sum + (item.decarbonisations[0]?.point || 0)
-  }, 0) : 0
+  let totalPoint = 0
+  if (questPointQuery.data.length > 0) {
+    totalPoint = questPointQuery.data.reduce((sum, item) => {
+      // FIXME: 型推論を修正できないため、仕方なくチェックを外す
+      // eslint-disable-next-line
+      // @ts-ignore
+      return sum + (item.decarbonisations?.point || 0)
+    }, 0)
+  }
 
   return {
     questPoint: totalPoint,
@@ -47,11 +50,15 @@ export function useQuestPointByLastWeek() {
     queryFn: () => fetchQuestPointByLastWeek(),
   });
 
-  console.log('questPointQueryByLastweek', questPointQuery)
-  const totalPoint = questPointQuery.data
-  ? questPointQuery.data.reduce((sum, item) => {
-    return sum + (item.decarbonisations[0]?.point || 0)
-  }, 0) : 0
+  let totalPoint = 0
+  if (questPointQuery.data.length > 0) {
+    totalPoint = questPointQuery.data.reduce((sum, item) => {
+      // FIXME: 型推論を修正できないため、仕方なくチェックを外す
+      // eslint-disable-next-line
+      // @ts-ignore
+      return sum + (item.decarbonisations?.point || 0)
+    }, 0)
+  }
 
   return {
     questPoint: totalPoint,
@@ -68,12 +75,15 @@ export function useQuestPointByToday() {
     queryFn: () => fetchQuestPointByToday(),
   });
 
-  console.log('questPointQueryBytoday', questPointQuery)
-
-  const totalPoint = questPointQuery.data
-  ? questPointQuery.data.reduce((sum, item) => {
-    return sum + (item.decarbonisations[0]?.point || 0)
-  }, 0) : 0
+  let totalPoint = 0
+  if (questPointQuery.data.length > 0) {
+    totalPoint = questPointQuery.data.reduce((sum, item) => {
+      // FIXME: 型推論を修正できないため、仕方なくチェックを外す
+      // eslint-disable-next-line
+      // @ts-ignore
+      return sum + (item.decarbonisations?.point || 0)
+    }, 0)
+  }
 
   return {
     questPoint: totalPoint,
