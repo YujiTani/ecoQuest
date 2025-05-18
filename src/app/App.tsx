@@ -25,8 +25,8 @@ function App() {
 
   return session ? (
     <>
-    <Notifications />
-    <Router />
+      <Notifications />
+      <Router />
     </>
   ) : (
     <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />

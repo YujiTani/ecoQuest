@@ -1,14 +1,14 @@
 import { useNotificationStore } from '@/components/ui/notifications/notification-store';
 
 function Home() {
-  const {addNotification} = useNotificationStore()
+  const { addNotification } = useNotificationStore();
   const notification = {
     type: 'error' as const,
     message: 'まじでやばいエラーが発生しました',
-  }
-  
+  };
+
   function handleClick() {
-    addNotification(notification)
+    addNotification(notification);
   }
 
   return (
