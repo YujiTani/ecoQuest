@@ -2,10 +2,10 @@ import { Helmet } from 'react-helmet-async';
 
 type HeadProps = {
   title: string;
-  description: string;
+  description?: string;
 };
 
-function Head({ title, description }: HeadProps) {
+function Head({ title, description = '' }: HeadProps) {
   return (
     <Helmet>
       <title>{title}</title>
