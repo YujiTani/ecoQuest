@@ -4,7 +4,7 @@ import { lazy } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 const HomePage = lazy(() => import('@/pages/Home'));
-const NotFoundPage = lazy(() => import('@/pages/NotFound'))
+const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 
 function Router() {
   return (
