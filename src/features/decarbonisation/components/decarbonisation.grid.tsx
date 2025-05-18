@@ -10,18 +10,12 @@ import {
   MessageCircle,
   TreeDeciduous,
 } from 'lucide-react';
-
-type Item = {
-  id: number;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-};
+import DecarbonisationItem, { Decarbonisation } from './decarbonisation.item';
 
 function DecarbonisationGrid() {
   const size = '48';
   // 子ども向け脱炭素アクション
-  const items: Item[] = [
+  const items: Decarbonisation[] = [
     {
       id: 1,
       title: '電気をこまめに消そう',
@@ -94,25 +88,7 @@ function DecarbonisationGrid() {
       </h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
-          >
-            <div className="flex h-40 items-center justify-center bg-gray-100">
-              <span className="text-3xl text-gray-400">{item.icon}</span>
-            </div>
-            <div className="p-5">
-              <div className="mb-3 flex items-center">
-                <div className="mr-3 rotate-12 transform rounded-full bg-white p-2 shadow-sm">
-                  {item.icon}
-                </div>
-                <h3 className="text-lg font-bold text-green-700">
-                  {item.title}
-                </h3>
-              </div>
-              <p className="text-sm text-gray-600">{item.description}</p>
-            </div>
-          </div>
+          <DecarbonisationItem item={item} />
         ))}
       </div>
     </div>
