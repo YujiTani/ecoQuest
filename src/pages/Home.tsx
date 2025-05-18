@@ -11,14 +11,24 @@ function Home() {
     addNotification(notification);
   }
 
+  function handleError() {
+    try {
+      throw Error('テスト:エラー発生');
+    } catch (error) {
+      // エラーを通知として追加
+      addNotification({
+        type: 'error' as const,
+        message: error instanceof Error ? error.message : 'Unknown error',
+      });
+    }
+  }
+
   return (
     <>
       <h1>Home</h1>
       <button onClick={handleClick}>通知</button>
       <button
-        onClick={() => {
-          throw new Error('テスト:エラー発生');
-        }}
+        onClick={handleError}
       >
         error
       </button>
