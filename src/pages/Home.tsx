@@ -1,26 +1,20 @@
-import Notification, {
-  NotificationProps,
-} from '@/components/ui/notifications/notification';
-import NotFoundRoute from './NotFound';
+import { useNotificationStore } from '@/components/ui/notifications/notification-store';
 
 function Home() {
-  const notificationObj: NotificationProps = {
-    notification: {
-      id: '1',
-      type: 'error',
-      message: 'test',
-    },
-    onDismiss: () => {},
-  };
+  const {addNotification} = useNotificationStore()
+  const notification = {
+    type: 'error' as const,
+    message: 'まじでやばいエラーが発生しました',
+  }
+  
+  function handleClick() {
+    addNotification(notification)
+  }
 
   return (
     <>
       <h1>Home</h1>
-      <Notification
-        notification={notificationObj.notification}
-        onDismiss={notificationObj.onDismiss}
-      />
-      <NotFoundRoute />
+      <button onClick={handleClick}>click</button>
     </>
   );
 }
