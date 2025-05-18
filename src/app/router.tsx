@@ -6,6 +6,8 @@ import MainErrorFallback from '@/components/errors/main';
 import { HelmetProvider } from 'react-helmet-async';
 import BaseLayout from '@/components/layouts/base-layout';
 
+
+const LoginPage = lazy(() => import('@/pages/Login'));
 const HomePage = lazy(() => import('@/pages/Home'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 
@@ -17,7 +19,8 @@ function Router() {
           <HelmetProvider>
             <Routes>
               <Route element={<BaseLayout />}>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/home" element={<HomePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Routes>
