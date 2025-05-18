@@ -28,14 +28,20 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^6.0.0",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^6.22.3",
     "tailwindcss": "^4.1.7",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@happy-dom/global-registrator": "^17.4.7",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/bun": "^1.2.13",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@types/web": "^0.0.235",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -51,5 +57,10 @@
       "eslint --max-warnings=0",
       "bash -c 'bun run check-types'"
     ]
+  },
+  "bun": {
+    "test": {
+      "environment": "jsdom"
+    }
   }
 }

@@ -27,11 +27,7 @@ function Home() {
     <>
       <h1>Home</h1>
       <button onClick={handleClick}>通知</button>
-      <button
-        onClick={handleError}
-      >
-        error
-      </button>
+      <button onClick={handleError}>error</button>
     </>
   );
 }
