@@ -1,7 +1,12 @@
-function UserInfo() {
-    
+import { useAuth } from '@/features/auth/api/useAuth';
 
-    return <p>ユーザー名</p>
+/**
+ * header; ユーザー情報を表示
+ */
+function UserInfo() {
+  const { user } = useAuth();
+
+  return <>{user && <p>{user.user_metadata.full_name}</p>}</>;
 }
 
-export default UserInfo
+export default UserInfo;
