@@ -1,12 +1,15 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchQueryPointByUserUuid, fetchQuestPoint } from "./quest-point.repository";
+import { useSuspenseQuery } from '@tanstack/react-query';
+import {
+  fetchQueryPointByUserUuid,
+  fetchQuestPoint,
+} from './quest-point.repository';
 
 export type FetchPointProps = {
-    options? :{
-        from?: Date;
-        to?: Date;
-    }
-}
+  options?: {
+    from?: Date;
+    to?: Date;
+  };
+};
 
 /**
  * ユーザーの獲得クエストポイントを取得
@@ -14,15 +17,15 @@ export type FetchPointProps = {
  * @param options.to 取得終了日 Date
  * @returns クエストポイント
  */
-export function useQuestPoint({options = {}}: FetchPointProps) {
-    const questPointQuery = useSuspenseQuery({
-        queryKey: ["questPoint", options?.from, options?.to],
-        queryFn: () => fetchQuestPoint({options}),
-    });
+export function useQuestPoint({ options = {} }: FetchPointProps) {
+  const questPointQuery = useSuspenseQuery({
+    queryKey: ['questPoint', options?.from, options?.to],
+    queryFn: () => fetchQuestPoint({ options }),
+  });
 
-    return {
-        questPoint: questPointQuery.data
-    }
+  return {
+    questPoint: questPointQuery.data,
+  };
 }
 
 /**
@@ -32,12 +35,12 @@ export function useQuestPoint({options = {}}: FetchPointProps) {
  * @returns クエストポイント
  */
 export function useQuestPointByUserUuid(uuid: string) {
-    const questPointQuery = useSuspenseQuery({
-        queryKey: ["questPoint", uuid],
-        queryFn: () => fetchQueryPointByUserUuid(uuid),
-    });
+  const questPointQuery = useSuspenseQuery({
+    queryKey: ['questPoint', uuid],
+    queryFn: () => fetchQueryPointByUserUuid(uuid),
+  });
 
-    return {
-        questPoint: questPointQuery.data
-    }
+  return {
+    questPoint: questPointQuery.data,
+  };
 }
