@@ -7,7 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import BaseLayout from '@/components/layouts/base-layout';
 
 
-const LoginPage = lazy(() => import('@/pages/Login'));
+const LoginPage = lazy(() => import('@/api/features/auth/components/Login'));
 const HomePage = lazy(() => import('@/pages/Home'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 
