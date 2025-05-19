@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 
 type LongPressSet = {
   onMouseDown: () => void; // マウスボタン押下時に検出開始
@@ -6,6 +6,7 @@ type LongPressSet = {
   onMouseLeave: () => void; // マウスが要素から離れた時に検出停止
   onTouchStart: () => void; // タッチ開始時に検出開始
   onTouchEnd: () => void; // タッチ終了時に検出停止
+  isPress: boolean;
 };
 
 /**
@@ -18,12 +19,15 @@ export const useLongPress = (
   ms: number,
 ): LongPressSet => {
   const timeout: MutableRefObject<NodeJS.Timeout | undefined> = useRef();
+  const [isPress, setIsPress] = useState(false)
 
   const start = () => {
+    setIsPress(true)
     timeout.current = setTimeout(callback, ms);
   };
 
   const stop = () => {
+    setIsPress(false)
     if (timeout.current) {
       clearTimeout(timeout.current);
     }
@@ -36,5 +40,6 @@ export const useLongPress = (
     onMouseLeave: stop,
     onTouchStart: start,
     onTouchEnd: stop,
+    isPress,
   };
 };

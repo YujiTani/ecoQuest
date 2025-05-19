@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import ConfirmDialog from '@/components/ui/dialogs/confirmDialog';
 import { CircleCheck } from 'lucide-react';
 import { useDecarbonisationStore } from '../api/decarbonisation.store';
+import CircleLoader from '@/components/ui/circles/circleLoader';
 
 export type Decarbonisation = {
   id: number;
@@ -69,9 +70,9 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
       ref={itemRef}
       key={item.id}
       className="relative rounded-lg border-8 border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
-      {...handleLongPress}
       data-id={item.uuid}
       onClick={handleClick}
+      {...handleLongPress}
     >
       {item.state === 'COMPLETED' && (
         <CircleCheck
@@ -94,6 +95,10 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
           <h3 className="text-lg font-bold text-green-700">{item.name}</h3>
         </div>
         <p className="text-sm text-gray-600">{item.description}</p>
+      </div>
+      {}
+      <div>
+        <CircleLoader width={50} height={50} milliseconds={pressMilliseconds} infinite={false} followCursor={true} isPressed={handleLongPress.isPress}  />
       </div>
       <ConfirmDialog
         isOpen={OpenDialog}
