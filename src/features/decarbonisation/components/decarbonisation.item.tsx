@@ -24,6 +24,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const itemRef = useRef<HTMLDivElement>(null);
   const icon = ICONS[item.icon] || ICONS.ToyBrick;
   const [OpenDialog, setOpenDialog] = useState(false);
+  const pressMilliseconds = 500
 
   function hancleLongPress() {
     const itemElement = itemRef.current;
@@ -35,7 +36,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     }
   }
 
-  const handleLongPress = useLongPress(hancleLongPress, 700);
+  const handleLongPress = useLongPress(hancleLongPress, pressMilliseconds);
 
   function handleConfirm() {
     if (onAchieve) {
