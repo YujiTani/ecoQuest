@@ -65,7 +65,7 @@ function CircleLoader({
                 r={150}
                 fill="none"
                 stroke="#f0f0f0"
-                strokeWidth={15}
+                strokeWidth={20}
             />
             <circle
                 cx={200}
@@ -73,7 +73,7 @@ function CircleLoader({
                 r={150}
                 fill="none"
                 stroke="green"
-                strokeWidth={15}
+                strokeWidth={20}
                 strokeDasharray={942}
                 strokeDashoffset={942}
                 strokeLinecap="round"

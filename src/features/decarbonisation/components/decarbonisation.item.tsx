@@ -30,7 +30,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const [OpenDialog, setOpenDialog] = useState(false);
   const { hasDecarbonisation, addDecarbonisation, removeDecarbonisation } =
     useDecarbonisationStore();
-  const pressMilliseconds = 500;
+  const pressMilliseconds = 800;
   const isSelected = hasDecarbonisation(item.uuid)
   const isCompleted = item.state === 'COMPLETED'
 
