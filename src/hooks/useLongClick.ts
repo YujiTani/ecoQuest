@@ -19,15 +19,15 @@ export const useLongPress = (
   ms: number,
 ): LongPressSet => {
   const timeout: MutableRefObject<NodeJS.Timeout | undefined> = useRef();
-  const [isPress, setIsPress] = useState(false)
+  const [isPress, setIsPress] = useState(false);
 
   const start = () => {
-    setIsPress(true)
+    setIsPress(true);
     timeout.current = setTimeout(callback, ms);
   };
 
   const stop = () => {
-    setIsPress(false)
+    setIsPress(false);
     if (timeout.current) {
       clearTimeout(timeout.current);
     }
