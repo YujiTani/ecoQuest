@@ -3,6 +3,8 @@ import {
   useAchieveDecarbonisationAction,
   useDecarbonisations,
 } from '../api/useDecarbonisation';
+import { useDecarbonisationStore } from '../api/decarbonisation.store';
+import { useUserStore } from '@/features/auth/api/user.store';
 
 /**
  * 脱炭素アクショングリッド
@@ -10,11 +12,20 @@ import {
 function DecarbonisationGrid() {
   const { decarbonisations } = useDecarbonisations();
   const achieveDecarbonisationAction = useAchieveDecarbonisationAction();
+  const { decarbonisations: selectedDecarbonisations } =
+    useDecarbonisationStore();
+  const { user } = useUserStore();
 
-  const handleAchieve = (uuid: string) => {
-    achieveDecarbonisationAction.mutate({
-      user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
-      decarbonisation_id: uuid,
+  const handleAchieve = () => {
+    if (!user) {
+      throw Error('ユーザー情報がありません');
+    }
+
+    selectedDecarbonisations.map((decarbonisation) => {
+      achieveDecarbonisationAction.mutate({
+        user_id: user.id,
+        decarbonisation_id: decarbonisation.uuid,
+      });
     });
   };
 
@@ -28,7 +39,7 @@ function DecarbonisationGrid() {
           <DecarbonisationItem
             item={item}
             key={item.name}
-            onAchieve={() => handleAchieve(item.uuid)}
+            onAchieve={() => handleAchieve()}
           />
         ))}
       </div>
