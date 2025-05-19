@@ -1,6 +1,9 @@
 import DecarbonisationItem from './decarbonisation.item';
 import { useDecarbonisations } from '../api/useDecarbonisation';
 
+/**
+ * 脱炭素アクショングリッド
+ */
 function DecarbonisationGrid() {
   const { decarbonisations } = useDecarbonisations()
 
