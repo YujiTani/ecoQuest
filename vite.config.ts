@@ -11,4 +11,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost',
+    port: process.env.PORT ? parseInt(process.env.PORT) : 5173,
+  },
 });
