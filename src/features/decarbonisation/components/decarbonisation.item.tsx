@@ -31,6 +31,8 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const { hasDecarbonisation, addDecarbonisation, removeDecarbonisation } =
     useDecarbonisationStore();
   const pressMilliseconds = 500;
+  const isSelected = hasDecarbonisation(item.uuid)
+  const isCompleted = item.state === 'COMPLETED'
 
   function showDialog() {
     const itemElement = itemRef.current;
@@ -65,11 +67,13 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     }
   }
 
+  const borderStyle = isSelected ? isCompleted ? "border-red-400" : "border-blue-400" : "border-gray-200"
+
   return (
     <div
       ref={itemRef}
       key={item.id}
-      className="relative rounded-lg border-8 border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+      className={`relative rounded-lg border-7 ${borderStyle} bg-white shadow-sm transition-shadow duration-200 hover:shadow-md`}
       data-id={item.uuid}
       onClick={handleClick}
       {...handleLongPress}
