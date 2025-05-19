@@ -20,16 +20,20 @@ export async function fetchDecarbonisations() {
  * supabaseのDatabase Functionsを使ってトランザクションしている
  * @returns response
  */
-export async function achieveDecarbonisationAction(payload: insertQuestPointRequest) {
-    const { data: response, error } = await supabase
-    .rpc('achieve_decarbonisation_action', {
+export async function achieveDecarbonisationAction(
+  payload: insertQuestPointRequest,
+) {
+  const { data: response, error } = await supabase.rpc(
+    'achieve_decarbonisation_action',
+    {
       p_user_uuid: payload.user_id,
-      p_decarbonisation_uuid: payload.decarbonisation_id, 
-    })
+      p_decarbonisation_uuid: payload.decarbonisation_id,
+    },
+  );
 
-    if (error) {
-      console.error(error)
-    }
+  if (error) {
+    console.error(error);
+  }
 
-    return response
+  return response;
 }

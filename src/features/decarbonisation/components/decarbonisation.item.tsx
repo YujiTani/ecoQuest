@@ -1,7 +1,8 @@
 import { useLongPress } from '@/hooks/useLongClick';
-import { IconNames, ICONS } from '../constants';
+import { IconNames, ICONS, SIZE } from '../constants';
 import { useRef, useState } from 'react';
 import ConfirmDialog from '@/components/ui/dialogs/confirmDialog';
+import { CircleCheck } from 'lucide-react'
 
 export type Decarbonisation = {
   id: number;
@@ -10,6 +11,7 @@ export type Decarbonisation = {
   description: string;
   icon: IconNames;
   image?: string;
+  state: string;
 };
 
 type DecarbonisationProps = {
@@ -48,13 +50,16 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     <div
       ref={itemRef}
       key={item.id}
-      className="overflow-hidden rounded-lg border-8 border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+      className="rounded-lg border-8 border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md relative"
       {...handleLongPress}
       data-id={item.uuid}
     >
+      { item.state === 'COMPLETED' && (
+         <CircleCheck className="h-14 w-14 text-green-600 bg-white rounded-4xl z-10 absolute -top-5 -right-5"  size={SIZE} />
+      )}
       <div className="flex h-60 items-center justify-center bg-gray-100">
         <img
-          className="aspect-square h-full w-full object-cover"
+          className={`aspect-square h-full w-full object-cover ${item.state === 'COMPLETED' && "grayscale-100"}`}
           src={item.image}
           alt={item.name}
         />

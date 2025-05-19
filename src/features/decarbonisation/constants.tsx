@@ -9,7 +9,7 @@ import {
   MessageCircle,
   TreeDeciduous,
 } from 'lucide-react';
-const SIZE = '48';
+export const SIZE = '48';
 
 // 子ども向け脱炭素アクション
 export const ICONS = {

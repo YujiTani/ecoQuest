@@ -1,5 +1,9 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
-import { achieveDecarbonisationAction, fetchDecarbonisations, insertQuestPointRequest } from './decarbonisation.repository';
+import {
+  achieveDecarbonisationAction,
+  fetchDecarbonisations,
+  insertQuestPointRequest,
+} from './decarbonisation.repository';
 
 /**
  * decarbonisationの一覧を取得
@@ -22,14 +26,15 @@ export function useDecarbonisations() {
  */
 export function useAchieveDecarbonisationAction() {
   const muteto = useMutation({
-    mutationFn: (payload: insertQuestPointRequest) => achieveDecarbonisationAction(payload),
+    mutationFn: (payload: insertQuestPointRequest) =>
+      achieveDecarbonisationAction(payload),
     onSuccess: (data) => {
-      console.log(`insert成功 ${data}`)
+      console.log(`insert成功 ${data}`);
     },
     onError: (error) => {
-      console.log(`insertエラー ${error}`)
-    }
-  })
+      console.log(`insertエラー ${error}`);
+    },
+  });
 
-  return muteto
+  return muteto;
 }

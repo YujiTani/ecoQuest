@@ -1,18 +1,21 @@
 import DecarbonisationItem from './decarbonisation.item';
-import { useAchieveDecarbonisationAction, useDecarbonisations } from '../api/useDecarbonisation';
+import {
+  useAchieveDecarbonisationAction,
+  useDecarbonisations,
+} from '../api/useDecarbonisation';
 
 /**
  * 脱炭素アクショングリッド
  */
 function DecarbonisationGrid() {
   const { decarbonisations } = useDecarbonisations();
-  const achieveDecarbonisationAction = useAchieveDecarbonisationAction()
+  const achieveDecarbonisationAction = useAchieveDecarbonisationAction();
 
   const handleAchieve = (uuid: string) => {
     achieveDecarbonisationAction.mutate({
-        user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
-        decarbonisation_id: uuid,
-    })
+      user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
+      decarbonisation_id: uuid,
+    });
   };
 
   return (
