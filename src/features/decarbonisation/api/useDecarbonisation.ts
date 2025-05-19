@@ -33,14 +33,14 @@ export function useAchieveDecarbonisationAction() {
   return useMutation({
     mutationFn: (payload: insertQuestPointRequest) =>
       achieveDecarbonisationAction(payload),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey:["decarbonisations"]})
       queryClient.invalidateQueries({ queryKey:["questPoint"]})
       queryClient.invalidateQueries({ queryKey:["questPoint", "today"]})
-      addNotification({type: "success", message: `正常に更新されました ${data}`});
+      addNotification({type: "success", message: `正常に更新されました`});
     },
-    onError: (error) => {
-      addNotification({type: "error", message: `更新に失敗しました ${error}`});
+    onError: () => {
+      addNotification({type: "error", message: `更新に失敗しました`});
     },
   });
 }
