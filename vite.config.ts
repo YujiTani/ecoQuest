@@ -14,5 +14,6 @@ export default defineConfig({
   server: {
     host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost',
     port: process.env.PORT ? parseInt(process.env.PORT) : 5173,
+    allowedHosts: ['ecoquest-2yyh.onrender.com'],
   },
 });
