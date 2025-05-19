@@ -3,6 +3,7 @@ import { IconNames, ICONS, SIZE } from '../constants';
 import { useRef, useState } from 'react';
 import ConfirmDialog from '@/components/ui/dialogs/confirmDialog';
 import { CircleCheck } from 'lucide-react';
+import { useDecarbonisationStore } from '../api/decarbonisation.store';
 
 export type Decarbonisation = {
   id: number;
@@ -26,6 +27,8 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const itemRef = useRef<HTMLDivElement>(null);
   const icon = ICONS[item.icon] || ICONS.ToyBrick;
   const [OpenDialog, setOpenDialog] = useState(false);
+  const { hasDecarbonisation, addDecarbonisation, removeDecarbonisation } =
+    useDecarbonisationStore();
   const pressMilliseconds = 500;
 
   function showDialog() {
@@ -39,8 +42,18 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   }
 
   function handleClick() {
-    // const uuid = itemElement.getAttribute('data-id');
-    console.log('選択状態をtoggleする');
+    const itemElement = itemRef.current;
+    const uuid = itemElement?.getAttribute('data-id');
+
+    if (!itemElement || !uuid) {
+      return;
+    }
+
+    if (!hasDecarbonisation(uuid)) {
+      addDecarbonisation(item);
+    } else {
+      removeDecarbonisation(uuid);
+    }
   }
 
   const handleLongPress = useLongPress(showDialog, pressMilliseconds);
