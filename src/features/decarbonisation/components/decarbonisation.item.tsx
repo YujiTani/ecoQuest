@@ -30,18 +30,18 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const [OpenDialog, setOpenDialog] = useState(false);
   const { hasDecarbonisation, addDecarbonisation, removeDecarbonisation } =
     useDecarbonisationStore();
+
   const pressMilliseconds = 800;
   const isSelected = hasDecarbonisation(item.uuid)
   const isCompleted = item.state === 'COMPLETED'
 
   function showDialog() {
     const itemElement = itemRef.current;
-
-    if (itemElement) {
-      // storeの配列にuuidをpush
-      // const uuid = itemElement.getAttribute('data-id');
-      setOpenDialog(true);
+    if (!itemElement) {
+      return;
     }
+    addDecarbonisation(item);
+    setOpenDialog(true);
   }
 
   function handleClick() {
