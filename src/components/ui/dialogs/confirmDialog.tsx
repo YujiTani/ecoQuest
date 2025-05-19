@@ -60,7 +60,10 @@ function ConfirmDialog({
   return (
     <dialog
       ref={dialogRef}
-      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-xl backdrop:bg-opacity-50 backdrop:bg-blend-overlay"
+      className="
+      fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+      rounded-lg backdrop:bg-black-overray
+    "
       onClick={(e) => {
         // ダイアログ内部をクリックした場合は何もしない
         // ダイアログ自体（backdrop部分）をクリックした場合は閉じる
@@ -69,12 +72,12 @@ function ConfirmDialog({
         }
       }}
     >
-      <div className="min-w-[300px] max-w-md">
+      <div className="min-w-[300px] max-w-md rounded-lg overflow-hidden shadow-2xl">
         <div className="bg-green-600 px-4 py-3 text-white">
           <h3 className="text-lg font-medium">{title}</h3>
         </div>
 
-        <div className="p-6">
+        <div className="p-6 bg-white">
           {item && item.image && (
             <div className="mb-4 flex justify-center">
               <img
