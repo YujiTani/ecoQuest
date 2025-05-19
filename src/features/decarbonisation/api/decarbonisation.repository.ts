@@ -6,7 +6,16 @@ export type insertQuestPointRequest = {
 };
 
 export async function fetchDecarbonisations() {
-  const { data, error } = await supabase.from('decarbonisations').select();
+  const { data, error } = await supabase
+  .from('decarbonisations')
+  .select(
+    `
+      *,
+      achievements (
+      id,
+      decarbonisation_id
+    )
+    `,);
 
   if (error) {
     throw error;
