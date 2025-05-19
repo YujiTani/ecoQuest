@@ -46,7 +46,6 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     if (!itemElement) {
       return;
     }
-    addDecarbonisation(item);
     setOpenDialog(true);
   }
 
@@ -110,7 +109,6 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
         </div>
         <p className="text-sm text-gray-600">{item.description}</p>
       </div>
-      {}
       <div>
         <CircleLoader
           width={50}

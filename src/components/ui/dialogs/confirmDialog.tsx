@@ -1,3 +1,4 @@
+import { useDecarbonisationStore } from '@/features/decarbonisation/api/decarbonisation.store';
 import { useRef, useEffect } from 'react';
 
 export type ConfirmDialogProps = {
@@ -25,6 +26,7 @@ function ConfirmDialog({
   item,
 }: ConfirmDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const {decarbonisations} = useDecarbonisationStore()
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -75,15 +77,18 @@ function ConfirmDialog({
         </div>
 
         <div className="bg-white p-6">
-          {item && item.image && (
-            <div className="mb-4 flex justify-center">
+          <div className="mb-4 flex justify-center flex-wrap gap-1.5">
+          {decarbonisations.length > 0 && decarbonisations.map((decarbonisation) => (
+            decarbonisation.image && (
               <img
-                src={item.image}
-                alt={item.name}
+                key={decarbonisation.uuid}
+                src={decarbonisation.image}
+                alt={decarbonisation.name}
                 className="h-32 w-32 rounded-lg object-cover"
               />
+            )
+          ))}
             </div>
-          )}
 
           {item && (
             <h4 className="mb-2 text-center text-lg font-bold text-gray-800">
