@@ -18,15 +18,18 @@ export function useAuth() {
 }
 
 /**
- * ログイン中のユーザー情報を取得
+ * ログイン中のユーザー情報のみを取得
  * @returns ユーザー
  */
 export function useUser() {
   const { setUser } = useUserStore();
-  const userQuery = useSuspenseQuery({
+  const {data} = useSuspenseQuery({
     queryFn: getUser,
     queryKey: ['user'],
   });
 
-  setUser(userQuery.data);
+  setUser(data);
+  return {
+    user: data
+  }
 }
