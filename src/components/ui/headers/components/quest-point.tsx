@@ -11,14 +11,14 @@ function QuestPoint() {
     <div className="flex items-center space-x-6">
       <div>
         <p className="text-xs text-gray-500">合計</p>
-        <p className="text-2xl font-semibold text-gray-900">
+        <p className="text-4xl font-semibold text-gray-900">
           {totalQuestPoint.toLocaleString()} pt
         </p>
       </div>
 
       <div>
         <p className="text-xs text-gray-500">今週</p>
-        <p className="text-2xl font-semibold text-green-600">
+        <p className="text-4xl font-semibold text-green-600">
           {todayQuestPoint.toLocaleString()} pt
         </p>
       </div>
