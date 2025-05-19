@@ -1,5 +1,5 @@
-import Notification from './notification';
-import { useNotificationStore } from './notification-store';
+import { useNotificationStore } from "../notification-store";
+import Notification from "./notification";
 
 function Notifications() {
   const { notifications, dismissNotification } = useNotificationStore();
