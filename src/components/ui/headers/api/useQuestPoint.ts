@@ -12,7 +12,7 @@ export type useQuestPointResponse = {
   decarbonisations: {
     point: number;
   };
-}
+};
 
 /**
  * ユーザーの獲得クエストポイントを取得
@@ -24,21 +24,20 @@ export function useQuestPoint() {
     queryFn: () => fetchQuestPoint(),
   });
 
-  let totalPoint = 0
+  let totalPoint = 0;
   if (questPointQuery.data.length > 0) {
     totalPoint = questPointQuery.data.reduce((sum, item) => {
       // FIXME: 型推論を修正できないため、仕方なくチェックを外す
       // eslint-disable-next-line
       // @ts-ignore
-      return sum + (item.decarbonisations?.point || 0)
-    }, 0)
+      return sum + (item.decarbonisations?.point || 0);
+    }, 0);
   }
 
   return {
     questPoint: totalPoint,
   };
 }
-
 
 /**
  * ユーザーの直近1週間の獲得クエストポイントを取得
@@ -50,14 +49,14 @@ export function useQuestPointByLastWeek() {
     queryFn: () => fetchQuestPointByLastWeek(),
   });
 
-  let totalPoint = 0
+  let totalPoint = 0;
   if (questPointQuery.data.length > 0) {
     totalPoint = questPointQuery.data.reduce((sum, item) => {
       // FIXME: 型推論を修正できないため、仕方なくチェックを外す
       // eslint-disable-next-line
       // @ts-ignore
-      return sum + (item.decarbonisations?.point || 0)
-    }, 0)
+      return sum + (item.decarbonisations?.point || 0);
+    }, 0);
   }
 
   return {
@@ -75,21 +74,20 @@ export function useQuestPointByToday() {
     queryFn: () => fetchQuestPointByToday(),
   });
 
-  let totalPoint = 0
+  let totalPoint = 0;
   if (questPointQuery.data.length > 0) {
     totalPoint = questPointQuery.data.reduce((sum, item) => {
       // FIXME: 型推論を修正できないため、仕方なくチェックを外す
       // eslint-disable-next-line
       // @ts-ignore
-      return sum + (item.decarbonisations?.point || 0)
-    }, 0)
+      return sum + (item.decarbonisations?.point || 0);
+    }, 0);
   }
 
   return {
     questPoint: totalPoint,
   };
 }
-
 
 /**
  * ユーザーの獲得クエストポイントをUuidで取得

@@ -1,11 +1,11 @@
-import supabase from "@/utils/supabase";
+import supabase from '@/utils/supabase';
 
 export async function fetchDecarbonisations() {
-    const {data, error} = await supabase.from('decarbonisations').select();
+  const { data, error } = await supabase.from('decarbonisations').select();
 
-    if (error) {
-        throw error
-    }
+  if (error) {
+    throw error;
+  }
 
-    return data
+  return data;
 }

@@ -8,16 +8,18 @@ export async function fetchQuestPoint() {
 
   const { data, error } = await supabase
     .from('quest_points')
-    .select(`
+    .select(
+      `
         id,
         created_at,
         decarbonisations (
         point
         )
-    `)
+    `,
+    )
     .lte('created_at', toDateISO)
     .order('created_at', { ascending: false })
-    .limit(1000)
+    .limit(1000);
 
   if (error) {
     throw error;
@@ -35,13 +37,15 @@ export async function fetchQuestPointByLastWeek() {
 
   const { data: quest_points, error } = await supabase
     .from('quest_points')
-    .select(`
+    .select(
+      `
         id,
         created_at,
         decarbonisations (
         point
         )
-    `)
+    `,
+    )
     .gte('created_at', fromDateISO)
     .lte('created_at', toDateISO)
     .order('created_at', { ascending: false });
@@ -53,30 +57,31 @@ export async function fetchQuestPointByLastWeek() {
   return quest_points;
 }
 
-
 export async function fetchQuestPointByToday() {
   const currentDate = new Date();
   const startDateTime = new Date(currentDate);
   startDateTime.setUTCHours(0, 0, 0, 1);
-  const startDateTimeISO = startDateTime.toISOString()
+  const startDateTimeISO = startDateTime.toISOString();
 
   const endDateTime = new Date(currentDate);
-  endDateTime.setUTCHours(23, 59, 59, 999)
-  const endDateTimeISO = endDateTime.toISOString()
+  endDateTime.setUTCHours(23, 59, 59, 999);
+  const endDateTimeISO = endDateTime.toISOString();
 
   const { data: quest_points, error } = await supabase
     .from('quest_points')
-    .select(`
+    .select(
+      `
         id,
         created_at,
         decarbonisations (
         point
         )
-    `)
+    `,
+    )
     .gte('created_at', startDateTimeISO)
     .lte('created_at', endDateTimeISO)
     .order('created_at', { ascending: false })
-    .limit(1000)
+    .limit(1000);
 
   if (error) {
     throw error;
@@ -84,8 +89,6 @@ export async function fetchQuestPointByToday() {
 
   return quest_points;
 }
-
-
 
 export async function fetchQueryPointByUserUuid(uuid: string) {
   const { data: quest_points, error } = await supabase

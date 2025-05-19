@@ -1,11 +1,11 @@
-import { useQuestPoint, useQuestPointByToday} from '../api/useQuestPoint';
+import { useQuestPoint, useQuestPointByToday } from '../api/useQuestPoint';
 
 /**
  * ユーザーの獲得しているポイント
  */
 function QuestPoint() {
-  const {questPoint: totalQuestPoint} = useQuestPoint();
-  const {questPoint: todayQuestPoint} = useQuestPointByToday();
+  const { questPoint: totalQuestPoint } = useQuestPoint();
+  const { questPoint: todayQuestPoint } = useQuestPointByToday();
 
   return (
     <div className="flex items-center space-x-6">
