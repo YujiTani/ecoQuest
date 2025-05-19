@@ -1,35 +1,18 @@
 import DecarbonisationItem from './decarbonisation.item';
-import { useDecarbonisations } from '../api/useDecarbonisation';
-import { useInsertManyQuestPoint } from '../api/useQuestPoint';
+import { useAchieveDecarbonisationAction, useDecarbonisations } from '../api/useDecarbonisation';
 
 /**
  * 脱炭素アクショングリッド
  */
 function DecarbonisationGrid() {
   const { decarbonisations } = useDecarbonisations();
-  const insertQuestPointMutation = useInsertManyQuestPoint();
+  const achieveDecarbonisationAction = useAchieveDecarbonisationAction()
 
-  // アクション達成時の処理
   const handleAchieve = (uuid: string) => {
-    // ここでAPIを呼び出して達成を記録することもできます
-    // 例: saveAchievement(uuid);
-    const response = insertQuestPointMutation.mutate([
-      {
+    achieveDecarbonisationAction.mutate({
         user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
         decarbonisation_id: uuid,
-      },
-      {
-        user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
-        decarbonisation_id: uuid,
-      },
-      {
-        user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
-        decarbonisation_id: uuid,
-      },
-    ]);
-
-    // TODO: 成功時、失敗時に通知を表示する
-    console.log('response:', response);
+    })
   };
 
   return (
