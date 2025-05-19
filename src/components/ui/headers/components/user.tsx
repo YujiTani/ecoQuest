@@ -1,12 +1,11 @@
-import { useUserStore } from '@/features/auth/api/user.store';
+import { useUser } from '@/features/auth/api/useAuth';
 
 /**
  * header; ユーザー情報を表示
  */
 function User() {
-  const { user } = useUserStore();
-
-  return <>{user && <p>{user.user_metadata.full_name}</p>}</>;
+  const { user } = useUser();
+  return <>{user && <p>{user.user_metadata.name}</p>}</>;
 }
 
 export default User;
