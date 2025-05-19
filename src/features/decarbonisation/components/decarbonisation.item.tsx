@@ -14,7 +14,14 @@ export type Decarbonisation = {
   icon: IconNames;
   image?: string;
   state: string;
+  achievements: Achievement[];
 };
+
+export type Achievement = {
+  id?: number;
+  user_id?: string;
+  decarbonisation_id?: string;
+}
 
 type DecarbonisationProps = {
   item: Decarbonisation;
@@ -30,10 +37,9 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const [OpenDialog, setOpenDialog] = useState(false);
   const { hasDecarbonisation, addDecarbonisation, removeDecarbonisation } =
     useDecarbonisationStore();
-
   const pressMilliseconds = 800;
   const isSelected = hasDecarbonisation(item.uuid);
-  const isCompleted = item.state === 'COMPLETED';
+  const isCompleted = item.achievements.length > 0
 
   function showDialog() {
     const itemElement = itemRef.current;
@@ -82,7 +88,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
       onClick={handleClick}
       {...handleLongPress}
     >
-      {item.state === 'COMPLETED' && (
+      {isCompleted && (
         <CircleCheck
           className="rounded-4xl absolute -right-5 -top-5 z-10 h-14 w-14 bg-white text-green-600"
           size={SIZE}
@@ -90,7 +96,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
       )}
       <div className="flex h-60 items-center justify-center bg-gray-100">
         <img
-          className={`aspect-square h-full w-full object-cover ${item.state === 'COMPLETED' && 'grayscale-100'}`}
+          className={`aspect-square h-full w-full object-cover ${isCompleted && 'grayscale-100'}`}
           src={item.image}
           alt={item.name}
         />
