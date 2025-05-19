@@ -1,4 +1,8 @@
-import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import {
   achieveDecarbonisationAction,
   fetchDecarbonisations,
@@ -28,19 +32,19 @@ export function useDecarbonisations() {
 export function useAchieveDecarbonisationAction() {
   // QueryClientを取得（キャッシュ操作用）
   const queryClient = useQueryClient();
-  const {addNotification} = useNotificationStore()
-  
+  const { addNotification } = useNotificationStore();
+
   return useMutation({
     mutationFn: (payload: insertQuestPointRequest) =>
       achieveDecarbonisationAction(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey:["decarbonisations"]})
-      queryClient.invalidateQueries({ queryKey:["questPoint"]})
-      queryClient.invalidateQueries({ queryKey:["questPoint", "today"]})
-      addNotification({type: "success", message: `正常に更新されました`});
+      queryClient.invalidateQueries({ queryKey: ['decarbonisations'] });
+      queryClient.invalidateQueries({ queryKey: ['questPoint'] });
+      queryClient.invalidateQueries({ queryKey: ['questPoint', 'today'] });
+      addNotification({ type: 'success', message: `正常に更新されました` });
     },
     onError: () => {
-      addNotification({type: "error", message: `更新に失敗しました`});
+      addNotification({ type: 'error', message: `更新に失敗しました` });
     },
   });
 }

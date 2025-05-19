@@ -2,7 +2,7 @@ import { useLongPress } from '@/hooks/useLongClick';
 import { IconNames, ICONS, SIZE } from '../constants';
 import { useRef, useState } from 'react';
 import ConfirmDialog from '@/components/ui/dialogs/confirmDialog';
-import { CircleCheck } from 'lucide-react'
+import { CircleCheck } from 'lucide-react';
 
 export type Decarbonisation = {
   id: number;
@@ -28,7 +28,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const [OpenDialog, setOpenDialog] = useState(false);
   const pressMilliseconds = 500;
 
-  function hancleLongPress() {
+  function showDialog() {
     const itemElement = itemRef.current;
 
     if (itemElement) {
@@ -38,7 +38,12 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     }
   }
 
-  const handleLongPress = useLongPress(hancleLongPress, pressMilliseconds);
+  function handleClick() {
+    // const uuid = itemElement.getAttribute('data-id');
+    console.log('選択状態をtoggleする');
+  }
+
+  const handleLongPress = useLongPress(showDialog, pressMilliseconds);
 
   function handleConfirm() {
     if (onAchieve) {
@@ -50,16 +55,20 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     <div
       ref={itemRef}
       key={item.id}
-      className="rounded-lg border-8 border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md relative"
+      className="relative rounded-lg border-8 border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
       {...handleLongPress}
       data-id={item.uuid}
+      onClick={handleClick}
     >
-      { item.state === 'COMPLETED' && (
-         <CircleCheck className="h-14 w-14 text-green-600 bg-white rounded-4xl z-10 absolute -top-5 -right-5"  size={SIZE} />
+      {item.state === 'COMPLETED' && (
+        <CircleCheck
+          className="rounded-4xl absolute -right-5 -top-5 z-10 h-14 w-14 bg-white text-green-600"
+          size={SIZE}
+        />
       )}
       <div className="flex h-60 items-center justify-center bg-gray-100">
         <img
-          className={`aspect-square h-full w-full object-cover ${item.state === 'COMPLETED' && "grayscale-100"}`}
+          className={`aspect-square h-full w-full object-cover ${item.state === 'COMPLETED' && 'grayscale-100'}`}
           src={item.image}
           alt={item.name}
         />

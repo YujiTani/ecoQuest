@@ -7,7 +7,7 @@ export type Notification = {
   message: string;
 };
 
-export type NotificationsStore = {
+export type NotificationStore = {
   notifications: Notification[];
   addNotification: (notification: Omit<Notification, 'id'>) => void;
   dismissNotification: (id: string) => void;
@@ -34,7 +34,7 @@ const dismissNotificationAtom = atom(null, (get, set, id: string) => {
   );
 });
 
-export function useNotificationStore(): NotificationsStore {
+export function useNotificationStore(): NotificationStore {
   const [notifications] = useAtom(notificationsAtom);
   const [, addNotification] = useAtom(addNotificationAtom);
   const [, dismissNotification] = useAtom(dismissNotificationAtom);
