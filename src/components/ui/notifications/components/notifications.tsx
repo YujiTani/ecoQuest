@@ -5,7 +5,7 @@ function Notifications() {
   const { notifications, dismissNotification } = useNotificationStore();
 
   return (
-    <div>
+    <div className="fixed bottom-4 left-4 flex flex-col gap-2 z-50">
       {notifications.map((notification) => (
         <Notification
           key={notification.id}

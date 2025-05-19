@@ -6,6 +6,7 @@ import MainErrorFallback from '@/components/errors/main';
 import { HelmetProvider } from 'react-helmet-async';
 import BaseLayout from '@/components/layouts/base-layout';
 import HomeLayout from '@/components/layouts/home-layout';
+import Notifications from '@/components/ui/notifications/components/notifications';
 
 const LoginPage = lazy(() => import('@/features/auth/components/Login'));
 const HomePage = lazy(() => import('@/pages/Home'));
@@ -26,6 +27,7 @@ function Router() {
                 <Route path="/home" element={<HomePage />} />
               </Route>
             </Routes>
+            <Notifications />
           </HelmetProvider>
         </ErrorBoundary>
       </Suspense>

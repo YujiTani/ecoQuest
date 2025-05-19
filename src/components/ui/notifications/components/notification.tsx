@@ -32,8 +32,8 @@ function Notification({
   }
 
   return (
-    <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
-      <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5">
+    <div className="flex w-full flex-col z-20 space-y-4">
+      <div className="p-2 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5">
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className="ml-2 shrink-0">{icons[type]}</div>
@@ -42,7 +42,7 @@ function Notification({
             </p>
           </div>
           <button
-            className="inline-flex rounded-lg bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
+            className="inline-flex items-center-safe rounded-lg bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
             onClick={() => {
               onDismiss(id);
             }}
