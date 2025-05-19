@@ -15,25 +15,25 @@ function DecarbonisationGrid() {
     // 例: saveAchievement(uuid);
     const response = insertQuestPointMutation.mutate([
       {
-      user_id: "a808ba52-64d5-456f-9590-da27cbb945eb",
-      decarbonisation_id: uuid,
-    },
-    {
-      user_id: "a808ba52-64d5-456f-9590-da27cbb945eb",
-      decarbonisation_id: uuid,
-    },
-    {
-      user_id: "a808ba52-64d5-456f-9590-da27cbb945eb",
-      decarbonisation_id: uuid,
-    },
-  ])
+        user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
+        decarbonisation_id: uuid,
+      },
+      {
+        user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
+        decarbonisation_id: uuid,
+      },
+      {
+        user_id: 'a808ba52-64d5-456f-9590-da27cbb945eb',
+        decarbonisation_id: uuid,
+      },
+    ]);
 
-  // TODO: 成功時、失敗時に通知を表示する
-  console.log('response:', response)
+    // TODO: 成功時、失敗時に通知を表示する
+    console.log('response:', response);
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 relative">
+    <div className="container relative mx-auto px-4 py-8">
       <h2 className="mb-6 text-center text-3xl font-bold">
         今日がんばったこと
       </h2>

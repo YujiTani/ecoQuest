@@ -24,7 +24,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
   const itemRef = useRef<HTMLDivElement>(null);
   const icon = ICONS[item.icon] || ICONS.ToyBrick;
   const [OpenDialog, setOpenDialog] = useState(false);
-  const pressMilliseconds = 500
+  const pressMilliseconds = 500;
 
   function hancleLongPress() {
     const itemElement = itemRef.current;
@@ -32,7 +32,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     if (itemElement) {
       // storeの配列にuuidをpush
       // const uuid = itemElement.getAttribute('data-id');
-      setOpenDialog(true)
+      setOpenDialog(true);
     }
   }
 

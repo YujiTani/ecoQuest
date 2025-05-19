@@ -60,7 +60,7 @@ function ConfirmDialog({
   return (
     <dialog
       ref={dialogRef}
-      className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-xl backdrop:bg-blend-overlay backdrop:bg-opacity-50"
+      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-xl backdrop:bg-opacity-50 backdrop:bg-blend-overlay"
       onClick={(e) => {
         // ダイアログ内部をクリックした場合は何もしない
         // ダイアログ自体（backdrop部分）をクリックした場合は閉じる
