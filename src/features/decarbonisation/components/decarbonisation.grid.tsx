@@ -5,6 +5,7 @@ import {
 } from '../api/useDecarbonisation';
 import { useDecarbonisationStore } from '../api/decarbonisation.store';
 import { useUserStore } from '@/features/auth/api/user.store';
+import DecarbonisationCompletedItem from './decarbonisation.completed.item';
 
 /**
  * 脱炭素アクショングリッド
@@ -36,11 +37,18 @@ function DecarbonisationGrid() {
       </h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {decarbonisations.map((item) => (
-          <DecarbonisationItem
-            item={item}
-            key={item.name}
-            onAchieve={() => handleAchieve()}
-          />
+          item.achievements.length > 0 ? (
+            <DecarbonisationCompletedItem
+              key={item.uuid}
+              item={item}
+            />
+          ) : (
+            <DecarbonisationItem
+              key={item.uuid}
+              item={item}
+              onAchieve={() => handleAchieve()}
+            />
+          )
         ))}
       </div>
     </div>

@@ -1,8 +1,7 @@
 import { useLongPress } from '@/hooks/useLongClick';
-import { IconNames, ICONS, SIZE } from '../constants';
+import { IconNames, ICONS } from '../constants';
 import { useRef, useState } from 'react';
 import ConfirmDialog from '@/components/ui/dialogs/confirmDialog';
-import { CircleCheck } from 'lucide-react';
 import { useDecarbonisationStore } from '../api/decarbonisation.store';
 import CircleLoader from '@/components/ui/circles/circleLoader';
 
@@ -39,7 +38,6 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     useDecarbonisationStore();
   const pressMilliseconds = 800;
   const isSelected = hasDecarbonisation(item.uuid);
-  const isCompleted = item.achievements.length > 0
 
   function showDialog() {
     const itemElement = itemRef.current;
@@ -72,11 +70,7 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
     }
   }
 
-  const borderStyle = isSelected
-    ? isCompleted
-      ? 'border-red-400'
-      : 'border-blue-400'
-    : 'border-gray-200';
+  const borderStyle = isSelected ? 'border-blue-400' : 'border-gray-200';
 
   return (
     <div
@@ -87,15 +81,9 @@ function DecarbonisationItem({ item, onAchieve }: DecarbonisationProps) {
       onClick={handleClick}
       {...handleLongPress}
     >
-      {isCompleted && (
-        <CircleCheck
-          className="rounded-4xl absolute -right-5 -top-5 z-10 h-14 w-14 bg-white text-green-600"
-          size={SIZE}
-        />
-      )}
       <div className="flex h-60 items-center justify-center bg-gray-100">
         <img
-          className={`aspect-square h-full w-full object-cover ${isCompleted && 'grayscale-100'}`}
+          className="aspect-square h-full w-full object-cover"
           src={item.image}
           alt={item.name}
         />
