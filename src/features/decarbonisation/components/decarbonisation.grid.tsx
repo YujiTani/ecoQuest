@@ -32,10 +32,10 @@ function DecarbonisationGrid() {
 
   return (
     <div className="container relative mx-auto px-4 py-8">
-      <h2 className="mb-6 text-center text-3xl font-bold">
-        今日がんばったこと
+      <h2 className="text-center font-bold text-2xl md:text-5xl">
+        地球にいいこと
       </h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="mt-20 grid gap-4 md:grid-cols-3">
         {decarbonisations.map((item) => (
           item.achievements.length > 0 ? (
             <DecarbonisationCompletedItem
